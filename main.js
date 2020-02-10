@@ -1,10 +1,3 @@
-// Randall has come back with a new job for you. Each week, he wants to see a report of how many cars each salesperson sells for that week. Here's his requirements to display for each sale.
-
-// Display the first and last name of the sales agent.
-// Display all keys and values for the car sold.
-// Display the gross profit made on the sale.
-
-
 
 const salesByWeek = [
     {
@@ -114,8 +107,29 @@ const salesByWeek = [
     }
 ]
 
+// Randall has come back with a new job for you. Each week, 
+// he wants to see a report of how many cars each salesperson sells for that week.
+//  Here's his requirements to display for each sale.
 
-// Here's your first data structure for the sales made last week. 
-// You will need to start off by iterating the array of sales with a forEach()
-//  method. Then iterate the entries of the vehicle property of each sale.
+// Display the first and last name of the sales agent.
+// Display all keys and values for the car sold.
+// Display the gross profit made on the sale.
 
+
+const outputElement = document.querySelector("#app")
+
+
+salesByWeek.forEach(sale => {
+
+    const firstName = sale.sales_agent.first_name;
+    const lastName = sale.sales_agent.last_name;
+
+    outputElement.innerHTML += `<b><p> ${firstName} ${lastName} </b></p> `
+    for (const entry of Object.entries(sale.vehicle)) {
+        outputElement.innerHTML += `<div>${entry[0]}: ${entry[1]}</div>`
+    }
+
+    const gross = sale.gross_profit;
+
+    outputElement.innerHTML += `<b><p> Profit: ${gross}$ </p></b>`
+});
